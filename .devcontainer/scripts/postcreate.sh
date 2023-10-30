@@ -1,1 +1,5 @@
-pip install -r requirements.txt
+poetry update
+
+if [[ ! -f .env ]]; then
+    cp {local,}.env
+fi
