@@ -1,0 +1,20 @@
+services:
+  app:
+    image: python:3.10
+    command: sleep infinity
+    volumes:
+      - ../..:/workspaces:cached
+    network_mode: service:db
+
+  db:
+    image: postgres:latest
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: fastapi
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
