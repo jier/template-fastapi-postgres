@@ -7,5 +7,5 @@ fi
 source .env
 
 cd src
-alembic upgrade head
+poetry run alembic upgrade head
 cd ..
