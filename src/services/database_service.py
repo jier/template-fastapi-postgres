@@ -11,3 +11,14 @@ def get_all_users(
 
 def get_user_by_id(db: Session, user_id: int) -> user_model.User | None:
     return db.query(user_model.User).get(user_id)
+
+def create_user(db:Session, user_data:user_schema.UserCreate) -> user_model.User:
+    new_user = user_model.User(**dict(user_data))
+    db.add(new_user)
+    db.commit()
+    db.refresh(new_user)
+    return new_user
+
+def update_user(db: Session, user_data: user_schema.UserCreate, user_id:int) -> user_model.User | None:
+    return db.query(user_model.User).filter(user_id == id).update(**user_data.model_dump())
+    

@@ -14,9 +14,11 @@ async def get_all_users(db: Session = Depends(get_db)):
 
 
 @app.post("/")
-async def create_user(input_user: UserCreate):
-    ...
-
+async def create_user(input_user: UserCreate, db:Session = Depends(get_db)):
+    new_user = dbs.create_user(db, input_user)
+    if new_user:
+        return new_user
+    return Response(content="could not create the user" ,status_code=500)
 
 @app.get("/{user_id}", response_model=User)
 async def get_user_by_id(user_id: int, db=Depends(get_db)):
