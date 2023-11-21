@@ -43,11 +43,13 @@ Then you have **infrastructure**. Those files are needed to make everything work
 - *.vscode/*: folder that contains the configuration for executing and debugging. This is a generic configuration, and you can modify it, if your project needs it. Remember this is shared amongst other developers, so do not add settings only valid for you.
 - *Dockerfile*: is the configuration for your environment. This file is exposed so you can change your environment like updating the python version.
 
-## Updating Database
+## Alembic
 
 Alembic is installed, and it runs the initial migration, already prepared. In a new project, you should delete the existing migration, and create a new one based on your configuration. 
 
 In alembic's [env.py](src/alembic/env.py) the target metadata was set based on user model. Change this, according to your needs. Alembic.ini was also modified, but you don't **need** to change it.
+
+>**NOTE**: alembic configuration is based in the user model. If you remove this moodel, you have to change it in env.py as well
 
 ### quick help on migration
 
